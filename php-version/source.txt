@@ -1,0 +1,60 @@
+
+/**
+ * This is essentially the same thing, but written using PHP and jQuery.
+ * Here are some of the important bits:
+ */
+
+
+
+/* Excerpt from index.php */
+
+<?php
+	$user = (isset($_POST['user'])) ? $_POST['user'] : 'siimorasmae';
+
+	$html = '';
+	$feed = (isset($_GET['favorites'])) ? 'https://www.readability.com/'.$user.'/favorites/feed' : 'https://www.readability.com/'.$user.'/latest/feed';
+	$feed_headers = @get_headers($feed);
+
+	if($feed_headers[0] == 'HTTP/1.1 200 OK') {
+  		$xml = simplexml_load_file($feed);
+	} else {
+		exit('<p><strong>Don\'t panic!</strong> Something went borked.</p>');
+	}
+	
+	foreach ($xml->channel->item as $item) {
+		$title = $item->title;
+		$link = $item->link;
+		$description = $item->description;
+		$pubDate = strtotime($item->pubDate);
+		$pubDateHuman = strftime('%d.%m.%Y / %H:%M:%S', $pubDate);	
+
+		$html .= '<article>';
+		$html .= '<header><h2 class="reader-item" data-url="'.$link.'">'.$title.'</h2></header>';
+		$html .= '<p>'.$description.'</p>';
+		$html .= '<p class="meta"><time datetime="'.$pubDate.'">'.$pubDateHuman.'</time> <a class="source" href="'.$link.'">source</a></p>';
+		$html .= '</article>';
+	}
+
+	echo $html;
+?>
+
+
+
+/* Excerpt from linkheap.js */
+
+$('.reader-item').click(function() {
+	var itemUrl = $(this).data('url');
+	var parseUrl = 'https://www.readability.com/api/content/v1/parser?url='+ itemUrl +'&token=xxxf&callback=?';
+	
+	$.getJSON(parseUrl, function(data) {
+		$('#reader .title').html(data.title);
+		$('#reader .content').html(data.content);
+		$('#reader').fadeIn(200);
+	});
+});
+
+$('#reader').click(function(e) {
+	if (e.target == this || e.target.id == 'reader-close') {
+		$('#reader').fadeOut(100);
+	}
+});
