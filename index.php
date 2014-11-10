@@ -29,14 +29,13 @@
 		</div>
 	</header>
 
-	<section id="reader" ng-show="displayLightbox">
-		<article>
-			<div id="reader-close" ng-click="displayLightbox = false">x</div>
-			<h1 class="title">{{article.title}}</h1>
-			<div class="content" ng-bind-html="article.content"></div>
-			<div class="meta">Source: <a href="{{article.url}}">{{article.domain}}</a></div>
-		</article>
-	</section>
+	<article id="reader-article" ng-show="displayLightbox">
+		<div id="reader-close" ng-click="displayLightbox = false">x</div>
+		<h1 class="title">{{article.title}}</h1>
+		<div class="content" ng-bind-html="article.content"></div>
+		<div class="meta">Source: <a href="{{article.url}}">{{article.domain}}</a></div>
+	</article>
+	<section id="reader" ng-show="displayLightbox" ng-click="displayLightbox = false"></section>
 
 	<section id="content">
 		<div class="loading-spinner" ng-hide="doneLoading"></div>

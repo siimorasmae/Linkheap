@@ -15,7 +15,7 @@ Visit: [Linkheap](http://pixeltouch.ee/projects/linkheap/)
 
 ### Known bugs
 
-* Can't close reader view by clicking on the background (propagation issue)
 * Various CSS-related bugs
 * Isn't really responsive (eg. currently no way of closing reader view on mobile) :D
 * ~~Breaks when it only gets one item via RSS (not an array)~~
+* ~~Can't close reader view by clicking on the background (propagation issue)~~
