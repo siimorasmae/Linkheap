@@ -22,8 +22,8 @@
 			</h1>
 			<nav>
 				<ul>
-					<li ng-click="itemType = 0; refreshItems(0,userName)" ng-class="itemType == 0 ? 'active' : ''">Latest</li><!--
-					--><li ng-click="itemType = 1; refreshItems(1,userName)" ng-class="itemType == 1 ? 'active' : ''">Favorites</li>
+					<li ng-click="itemType = 0; refreshItems(0,userName); noItems = false" ng-class="itemType == 0 ? 'active' : ''">Latest</li><!--
+					--><li ng-click="itemType = 1; refreshItems(1,userName); noItems = false" ng-class="itemType == 1 ? 'active' : ''">Favorites</li>
 				</ul>
 			</nav>
 		</div>
@@ -40,6 +40,7 @@
 
 	<section id="content">
 		<div class="loading-spinner" ng-hide="doneLoading"></div>
+		<div ng-show="noItems">This feed is empty... (ಠ_ಠ)</div>
 		<div id="columns">
 
 			<article ng-repeat="item in items" ng-click="readArticle(item.link)">

@@ -25,7 +25,9 @@ app.controller('appController', function($scope, $http) {
 			url = 'https://www.readability.com/'+user+'/favorites/feed';
 
 		$http.jsonp('http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url="'+url+'"&format=json&callback=JSON_CALLBACK').success(function(data) {
-			if (data.query.results.rss.channel.item.length > 0)
+			if (!data.query.results.rss.channel.item)
+				$scope.noItems = true;
+			else if (data.query.results.rss.channel.item.length > 0)
 				$scope.items = data.query.results.rss.channel.item;
 			else
 				$scope.items = [data.query.results.rss.channel.item]; // if returns 1 item
