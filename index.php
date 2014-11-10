@@ -12,13 +12,13 @@
 	<link rel="stylesheet" href="css/linkheap.css">
 </head>
 
-<body ng-app="linkheap" ng-controller="appController" ng-init="itemType = 0; userName = 'siimorasmae'">
+<body ng-app="linkheap" ng-controller="appController" ng-init="itemType = 0; userName = getCookieUser();">
 	<header>
 		<div id="wrap">
 			<h1>
 				<a href="http://pixeltouch.ee/projects/linkheap/">Linkheap</a>
 				<span class="user"> / <input type="text" name="user" placeholder="user?" ng-model="userName" ng-change="userChanged = true">
-				<div class="refresh" ng-click="refreshItems(itemType,userName); userChanged = false" ng-show="userChanged">&raquo;</div></span>
+				<div class="refresh" ng-click="refreshItems(itemType,userName); setCookieUser(userName); userChanged = false" ng-show="userChanged">&raquo;</div></span>
 			</h1>
 			<nav>
 				<ul>
@@ -58,7 +58,8 @@
 	</section>
 	
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-cookies.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.min.js"></script>
 	<script src="js/linkheap.js"></script>
 </body>
 </html>

@@ -9,9 +9,9 @@ Visit: [Linkheap](http://pixeltouch.ee/projects/linkheap/)
 ### TO-DO
 
 * Animations!
-* Cookies! Maybe!
 * Add an ability to favorite/archive articles
 * Predict behavior
+* ~~Cookies! Maybe!~~
 
 ### Known bugs
 

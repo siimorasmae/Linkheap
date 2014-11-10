@@ -1,8 +1,9 @@
 
-var app = angular.module('linkheap', ['ngSanitize']);
+var app = angular.module('linkheap', ['ngSanitize','ngCookies']);
 
-app.controller('appController', function($scope, $http) {
-	getItems(0,'siimorasmae'); // init
+app.controller('appController', function($scope, $http, $cookies) {
+	// init
+	getItems(0,$cookies.userName ? $cookies.userName : 'siimorasmae');
 
 	$scope.refreshItems = function(type,user) {
 		getItems(type,user);
@@ -13,6 +14,13 @@ app.controller('appController', function($scope, $http) {
 			$scope.article = data;
 			$scope.displayLightbox = true;
 		});
+	}
+
+	$scope.getCookieUser = function() {
+		return $cookies.userName ? $cookies.userName : 'siimorasmae';
+	}
+	$scope.setCookieUser = function(user) {
+		$cookies.userName = user;
 	}
 
 	function getItems(type,user) {
