@@ -11,7 +11,7 @@ Visit: [Linkheap](http://pixeltouch.ee/projects/linkheap/)
 * Animations!
 * Add an ability to favorite/archive articles
 * Predict behavior
-* ~~Cookies! Maybe!~~
+* ~~Cookies! Maybe!~~ ✓
 
 ### Known bugs
 
